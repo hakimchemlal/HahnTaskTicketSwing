@@ -77,45 +77,6 @@ public class TicketService {
         }
     }
 
-    /*// Ajouter un commentaire
-    public TicketResponse addComment(Long ticketId, String comment) throws IOException {
-        String json = gson.toJson(comment);
-        RequestBody body = RequestBody.create(json, MediaType.parse("application/json"));
-        Request request = new Request.Builder()
-                .url(API_URL + "/api/tickets/" + ticketId + "/comments")
-                .post(body)
-                .build();
-
-        try (Response response = client.newCall(request).execute()) {
-            if (response.isSuccessful() && response.body() != null) {
-                return gson.fromJson(response.body().string(), TicketResponse.class);
-            } else {
-                throw new IOException("Échec de l'ajout du commentaire : " + response.message());
-            }
-        }
-    }*/
-
-    // Ajouter un commentaire
-    public TicketResponse addComment(Long ticketId, String comment) throws IOException {
-        String json = gson.toJson(comment);
-        RequestBody body = RequestBody.create(
-                MediaType.parse("application/json"),
-                json
-        );
-
-        Request request = new Request.Builder()
-                .url(API_URL + "/api/tickets/" + ticketId + "/comments")
-                .post(body)
-                .build();
-
-        try (Response response = client.newCall(request).execute()) {
-            if (response.isSuccessful() && response.body() != null) {
-                return gson.fromJson(response.body().string(), TicketResponse.class);
-            } else {
-                throw new IOException("Échec de l'ajout du commentaire : " + response.message());
-            }
-        }
-    }
 
     // Mettre à jour le statut du ticket
     public TicketResponse updateTicketStatus(Long ticketId, String newStatus) throws IOException {
@@ -133,7 +94,7 @@ public class TicketService {
         }
     }
 
-    public TicketResponse addCommentX(Long ticketId, String comment) throws IOException {
+    public TicketResponse addComment(Long ticketId, String comment) throws IOException {
         String json = gson.toJson(comment);
         RequestBody body = RequestBody.create(
                 MediaType.parse("application/json"),

@@ -70,7 +70,7 @@ public class AddCommentDialog extends JDialog {
 
             new Thread(() -> {
                 try {
-                    ticketService.addCommentX(ticketId, comment);
+                    ticketService.addComment(ticketId, comment);
                     SwingUtilities.invokeLater(() -> {
                         JOptionPane.showMessageDialog(this,
                                 "Comment added successfully",
